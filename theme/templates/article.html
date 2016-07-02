@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title|striptags }}{% endblock %}
+{% block content %}
+<section id="content" class="body">
+  <article>
+    <header class="article">
+      <h1 class="entry-title">
+        <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+      </h1>
+        {{ article.date|strftime('%B, %d %Y') }}
+      <hr class="heavy">
+    </header>
+
+    <div class="entry-content">
+      {{ article.content }}
+    </div><!-- /.entry-content -->
+    <hr>
+    <em>Tweet comments, corrections, or props</em>
+  </article>
+</section>
+{% endblock %}

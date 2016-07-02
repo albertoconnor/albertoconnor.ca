@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block content_title %}{% endblock %}
+{% block precontent %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2" style="text-align: center">
+      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png">
+      <h1>Albert O'Connor<br>Web Developer</h1>
+      <p class="lead"><a href="#">Django</a> from 1.0 to <a href="#">Channels</a><br><a href="#">AWS</a> from t1.micro to t2.nano<br>Businesses, startups, and non-profits</p>
+      <p><em>Hire me by Twitter or by Email</em></p>
+    </div>
+  </div>
+</div>
+<section class="logos">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-3" style="text-align: center">
+      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
+      <p>Developer and CIO adviser</p>
+    </div>
+    <div class="col-md-3" style="text-align: center">
+      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
+      <p>Built and maintained CMS</p>
+    </div>
+    <div class="col-md-3" style="text-align: center">
+      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/watpy.png" alt="WatPy: Waterloo Region Python Group">
+      <p>Founder and Organizer</p>
+    </div>
+    <div class="col-md-3" style="text-align: center">
+      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/avocado.png" alt="Avocado Co-op">
+      <p>Founder and Developer</p>
+    </div>
+  </div>
+</div>
+</section>
+{% endblock precontent %}
+
+{% block content %}
+<hr>
+{% if articles %}
+    {% for article in articles_page.object_list %}
+    <div class="index">
+      <h4 class="title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+      <time>
+        {{ article.date|strftime('%B, %d %Y') }}
+      </time>
+      </div>
+    {% if loop.last %}
+            {% if loop.length > 1 or articles_page.has_other_pages() %}
+                </ol><!-- /#posts-list -->
+                {% if articles_page.has_other_pages() %}
+                    {% include 'pagination.html' %}
+                {% endif %}
+                </section><!-- /#content -->
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+{% else %}
+<section id="content" class="body">
+<h2>Pages</h2>
+    {% for page in PAGES %}
+        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+    {% endfor %}
+</section>
+{% endif %}
+{% endblock content %}
