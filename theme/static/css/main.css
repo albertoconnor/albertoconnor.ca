@@ -11,7 +11,14 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Custom additions for high-impact effects */
+/* Ensure highlight class blocks have full width and scroll */
+.highlight {
+  @apply overflow-x-auto rounded-xl my-6;
+}
+
+.highlight pre {
+  @apply bg-[#272822] text-gray-100 p-4 font-mono text-sm m-0;
+}
 .hover-underline-animation {
   display: inline-block;
   position: relative;
