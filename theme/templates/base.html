@@ -12,9 +12,6 @@
   {% if FEED_ALL_RSS %}
   <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
   {% endif %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygment.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/albertoconnor.css">
@@ -24,10 +21,10 @@
 </head>
 
 <body id="index" class="min-h-screen flex flex-col text-gray-900 font-sans leading-relaxed" hx-boost="true">
-  <header id="banner" class="w-full border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4 max-w-6xl flex justify-between items-center">
-      <a href="{{ SITEURL }}/" class="text-xl font-bold tracking-tight text-gray-900 hover:text-brand-red transition-colors flex items-center gap-3">
-        <img class="h-8 w-8 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png" alt="Logo">
+  <header id="banner" class="w-full border-b border-gray-100 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-3 max-w-6xl flex justify-between items-center">
+      <a href="{{ SITEURL }}/" class="text-lg font-bold tracking-tight text-gray-900 hover:text-brand-red transition-colors flex items-center gap-3">
+        <img class="h-6 w-6 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png" alt="Logo">
         Albert O'Connor
       </a>
       <nav class="flex items-center gap-6 text-sm font-medium text-gray-600">
