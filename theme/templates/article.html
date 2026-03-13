@@ -1,25 +1,32 @@
 {% extends "base.html" %}
 {% block title %}{{ article.title|striptags }}{% endblock %}
 {% block content %}
-<section id="content" class="body max-w-3xl mx-auto py-12">
+<section id="content" class="w-full max-w-3xl mx-auto py-12 md:py-20">
   <article>
-    <header class="article text-center mb-12">
-      <h1 class="entry-title text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-4">
-        <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+    <header class="mb-14">
+      <div class="mb-6 flex items-center text-sm font-mono text-gray-500 uppercase tracking-wider">
+        <time datetime="{{ article.date|strftime('%Y-%m-%d') }}">
+          {{ article.date|strftime('%B %d, %Y') }}
+        </time>
+        {% if article.category %}
+        <span class="mx-2 text-gray-300">|</span>
+        <a href="{{ SITEURL }}/{{ article.category.url }}" class="hover:text-brand-red transition-colors">{{ article.category }}</a>
+        {% endif %}
+      </div>
+      <h1 class="text-4xl md:text-5xl font-sans font-extrabold tracking-tight text-gray-900 leading-tight mb-8">
+        {{ article.title }}
       </h1>
-      <time class="text-gray-500 font-sans tracking-wide">
-        {{ article.date|strftime('%B %d, %Y') }}
-      </time>
-      <hr class="border-t-4 border-brand-gray mt-8 mb-8 w-24 mx-auto">
+      <div class="w-12 h-1 bg-brand-red rounded-full"></div>
     </header>
 
-    <div class="entry-content prose prose-lg prose-red max-w-none text-gray-800 leading-relaxed">
+    <div class="entry-content prose prose-lg md:prose-xl prose-red max-w-none text-gray-800 leading-relaxed prose-headings:font-sans prose-headings:font-bold prose-a:text-brand-red hover:prose-a:text-red-800 prose-img:rounded-xl prose-img:shadow-sm">
       {{ article.content }}
     </div><!-- /.entry-content -->
     
-    <hr class="my-12 border-t border-gray-200">
-    <div class="text-center">
-      <em class="text-gray-500 italic">Send comments, corrections, or props to <a href="https://github.com/albertoconnor" class="text-brand-red hover:text-brand-gray transition-colors">@albertoconnor</a></em>
+    <div class="mt-20 pt-8 border-t border-gray-200">
+      <p class="text-gray-500 text-sm">
+        Send comments, corrections, or props via <a href="https://github.com/albertoconnor" class="font-medium text-brand-red hover:text-red-800 transition-colors">GitHub</a> or <a href="mailto:info@albertoconnor.ca" class="font-medium text-brand-red hover:text-red-800 transition-colors">Email</a>.
+      </p>
     </div>
   </article>
 </section>
