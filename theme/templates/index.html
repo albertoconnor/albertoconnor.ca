@@ -1,66 +1,89 @@
 {% extends "base.html" %}
 {% block content_title %}{% endblock %}
 {% block precontent %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png">
-      <h1>Albert O'Connor<br>Web Developer</h1>
-      <p class="lead"><a href="#">Django</a> from 1.0 to <a href="#">Channels</a><br><a href="#">AWS</a> from t1.micro to t2.nano<br>Businesses, startups, and non-profits</p>
-      <p><em>Hire me by Twitter or by Email</em></p>
+<div class="container mx-auto px-4 mt-8">
+  <div class="flex flex-col items-center text-center my-12">
+    <img class="max-w-[175px] mb-8" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png" alt="Albert O'Connor Logo">
+    <h1 class="text-4xl md:text-5xl font-sans font-bold text-gray-900 mb-2">Albert O'Connor</h1>
+    <h2 class="text-2xl md:text-3xl font-sans text-brand-red mb-6">Fractional Staff Software Engineer</h2>
+    
+    <div class="text-xl md:text-2xl mt-6 text-gray-700 max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-center gap-2">
+      <span class="mb-2 md:mb-0">Help you think through</span>
+      <div class="ticker-wrap font-bold text-brand-red bg-gray-100 rounded px-2">
+        <div class="ticker-words">
+          <span>Architecture</span>
+          <span>Best Practices</span>
+          <span>Hiring</span>
+          <span>Code Quality</span>
+          <span>Code Organization</span>
+          <span>AI Assisted Dev</span>
+          <span>Architecture</span> <!-- Repeat first word to seamlessly loop -->
+        </div>
+      </div>
+      <span class="hidden md:inline">exactly when you need it.</span>
     </div>
+    <div class="text-xl md:text-2xl text-gray-700 md:hidden mt-2">exactly when you need it.</div>
+    
+    <p class="mt-8 text-gray-500 italic">Connect with me on <a href="https://twitter.com/albertoconnor" class="text-brand-red hover:text-brand-gray transition-colors">Twitter</a> or by <a href="mailto:info@albertoconnor.ca" class="text-brand-red hover:text-brand-gray transition-colors">Email</a></p>
   </div>
 </div>
-<section class="logos">
-  <div class="container">
-  <div class="row">
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
-      <p>Developer and CIO adviser</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
-      <p>Built and maintained CMS</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/watpy.png" alt="WatPy: Waterloo Region Python Group">
-      <p>Founder and Organizer</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/avocado.png" alt="Avocado Co-op">
-      <p>Founder and Developer</p>
+
+<section class="logos bg-gray-100 py-16 my-16 font-sans text-sm">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-4xl mx-auto items-center">
+      <div class="flex flex-col items-center">
+        <img class="h-16 mb-4 grayscale opacity-70 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png" alt="IQC Logo">
+        <p class="font-medium text-gray-600">Developer &amp; CIO adviser</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <img class="h-16 mb-4 grayscale opacity-70 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png" alt="CMS Maintainer">
+        <p class="font-medium text-gray-600">Built &amp; maintained CMS</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <img class="h-16 mb-4 grayscale opacity-70 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/watpy.png" alt="WatPy: Waterloo Region Python Group">
+        <p class="font-medium text-gray-600">Founder &amp; Organizer</p>
+      </div>
+      <div class="flex flex-col items-center">
+        <img class="h-16 mb-4 grayscale opacity-70 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/avocado.png" alt="Avocado Co-op">
+        <p class="font-medium text-gray-600">Founder &amp; Developer</p>
+      </div>
     </div>
   </div>
-</div>
 </section>
 {% endblock precontent %}
 
 {% block content %}
-<hr>
+<hr class="border-t-4 border-brand-gray my-12 mx-auto w-full">
+<div class="max-w-2xl mx-auto">
 {% if articles %}
+    <div class="space-y-10">
     {% for article in articles_page.object_list %}
-    <div class="index">
-      <h4 class="title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
-      <time>
-        {{ article.date|strftime('%B, %d %Y') }}
-      </time>
+      <div class="index group">
+        <h4 class="title text-2xl font-sans font-bold mb-2">
+          <a href="{{ SITEURL }}/{{ article.url }}" class="text-gray-900 hover:text-brand-red transition-colors">{{ article.title }}</a>
+        </h4>
+        <time class="text-gray-500 font-sans text-sm flex items-center before:content-['—'] before:mr-2">
+          {{ article.date|strftime('%B %d, %Y') }}
+        </time>
       </div>
-    {% if loop.last %}
-            {% if loop.length > 1 or articles_page.has_other_pages() %}
-                </ol><!-- /#posts-list -->
-                {% if articles_page.has_other_pages() %}
-                    {% include 'pagination.html' %}
-                {% endif %}
-                </section><!-- /#content -->
-            {% endif %}
+      {% if loop.last %}
+        {% if loop.length > 1 or articles_page.has_other_pages() %}
+          {% if articles_page.has_other_pages() %}
+              {% include 'pagination.html' %}
+          {% endif %}
         {% endif %}
+      {% endif %}
     {% endfor %}
+    </div>
 {% else %}
 <section id="content" class="body">
 <h2>Pages</h2>
+  <ul class="list-disc pl-6">
     {% for page in PAGES %}
-        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+        <li><a href="{{ SITEURL }}/{{ page.url }}" class="text-brand-red hover:underline">{{ page.title }}</a></li>
     {% endfor %}
+  </ul>
 </section>
 {% endif %}
+</div>
 {% endblock content %}

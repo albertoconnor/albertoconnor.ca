@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-brand-red: #7e1d16;
+  --color-brand-gray: #4b4b4b;
+  --color-brand-light: #fcfcfc;
+  --font-serif: "Scope One", Georgia, serif;
+  --font-sans: "Roboto", sans-serif;
+  --font-condensed: "Roboto Condensed", sans-serif;
+}
+
+/* Vertical Ticker Styles */
+.ticker-wrap {
+  display: inline-flex;
+  height: 1.5em;
+  overflow: hidden;
+  vertical-align: bottom;
+  position: relative;
+  width: 250px; /* Adjust width based on longest word */
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .ticker-wrap {
+    width: 280px;
+    justify-content: flex-start;
+  }
+}
+
+.ticker-words {
+  display: flex;
+  flex-direction: column;
+  animation: tick 15s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .ticker-words {
+    text-align: left;
+  }
+}
+
+.ticker-words span {
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .ticker-words span {
+    justify-content: flex-start;
+  }
+}
+
+@keyframes tick {
+  0%, 12%  { transform: translateY(0); }
+  16%, 29% { transform: translateY(-1.5em); }
+  33%, 45% { transform: translateY(-3.0em); }
+  50%, 62% { transform: translateY(-4.5em); }
+  66%, 79% { transform: translateY(-6.0em); }
+  83%, 95% { transform: translateY(-7.5em); }
+  100%     { transform: translateY(-9.0em); }
+}

@@ -33,46 +33,40 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Roboto:500" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300|Scope+One" rel="stylesheet">
   <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygment.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/albertoconnor.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
   {% endblock head %}
 </head>
 
-<body id="index" class="home">
-  <header id="banner" class="body container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2" style="text-align: center">
-        <nav>
-          <a href="{{ SITEURL }}/" class="pill">Albert O'Connor WD</a>
-          <a href="{{ SITEURL }}/" class="pill hidden-xs-down"><i class="fa fa-feed"></i></a>
-          <a href="{{ SITEURL }}/" class="pill hidden-xs-down"><i class="fa fa-bookmark"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-linkedin"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-twitter"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-github"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-bitbucket"></i></a>
-
-        </nav>
-      </div>
+<body id="index" class="home min-h-screen flex flex-col bg-[#fcfcfc] text-gray-800 font-serif leading-relaxed" hx-boost="true">
+  <header id="banner" class="container mx-auto px-4 mt-8">
+    <div class="max-w-3xl mx-auto text-center">
+      <nav class="my-8 flex justify-center flex-wrap gap-2">
+        <a href="{{ SITEURL }}/" class="pill bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors">Albert O'Connor WD</a>
+        <a href="{{ SITEURL }}/" class="pill hidden sm:inline-block bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-feed"></i></a>
+        <a href="{{ SITEURL }}/" class="pill hidden sm:inline-block bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-bookmark"></i></a>
+        <a href="{{ SITEURL }}/" class="pill bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-linkedin"></i></a>
+        <a href="{{ SITEURL }}/" class="pill bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-twitter"></i></a>
+        <a href="{{ SITEURL }}/" class="pill bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-github"></i></a>
+        <a href="{{ SITEURL }}/" class="pill bg-brand-red text-white px-3 py-1 font-sans uppercase text-sm tracking-wide hover:bg-brand-gray transition-colors"><i class="fa fa-bitbucket"></i></a>
+      </nav>
     </div>
   </header><!-- /#banner -->
   {% block precontent %}
   {% endblock precontent %}
-  <div class="container content">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        {% block content %}
-        {% endblock %}
-      </div>
+  <div class="container mx-auto px-4 pb-16 flex-grow">
+    <div class="max-w-3xl mx-auto">
+      {% block content %}
+      {% endblock %}
     </div>
   </div>
-  <footer id="contentinfo" class="page_footer">
-    <div class="container" style="text-align: center">
+  <footer id="contentinfo" class="w-full bg-brand-gray text-[#8b8b8b] py-12 mt-auto">
+    <div class="container mx-auto text-center font-sans text-sm">
       <i class="fa fa-creative-commons" title="Creative Commons"></i> Albert O'Connor<br>
-      <a href="http://getpelican.com/">Pelican</a> powered<br>
-      <a href="#">Bootstrap 4</a> and <a href="#">Font Awesome</a><br>
+      <a href="http://getpelican.com/" class="text-gray-400 hover:text-white font-bold transition-colors">Pelican</a> powered<br>
+      <a href="#" class="text-gray-400 hover:text-white font-bold transition-colors">Tailwind CSS</a> and <a href="#" class="text-gray-400 hover:text-white font-bold transition-colors">Font Awesome</a><br>
       Logo by Jenn Tiegs
     </div>
   </footer><!-- /#contentinfo -->
