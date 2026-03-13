@@ -9,17 +9,9 @@
     
     <div class="text-xl md:text-2xl mt-6 text-gray-700 max-w-2xl mx-auto flex flex-col md:flex-row items-center justify-center gap-2">
       <span class="mb-2 md:mb-0">Help you think through</span>
-      <div class="ticker-wrap font-bold text-brand-red bg-gray-100 rounded px-2">
-        <div class="ticker-words">
-          <span>Architecture</span>
-          <span>Best Practices</span>
-          <span>Hiring</span>
-          <span>Code Quality</span>
-          <span>Code Organization</span>
-          <span>AI Assisted Dev</span>
-          <span>Architecture</span> <!-- Repeat first word to seamlessly loop -->
-        </div>
-      </div>
+      <span class="font-mono font-bold text-brand-red bg-gray-100 rounded px-2 py-1 flex items-center min-h-[2em] min-w-[220px]">
+        <span id="typewriter-text"></span><span class="animate-pulse">_</span>
+      </span>
       <span class="hidden md:inline">exactly when you need it.</span>
     </div>
     <div class="text-xl md:text-2xl text-gray-700 md:hidden mt-2">exactly when you need it.</div>
@@ -27,6 +19,48 @@
     <p class="mt-8 text-gray-500 italic">Connect with me on <a href="https://twitter.com/albertoconnor" class="text-brand-red hover:text-brand-gray transition-colors">Twitter</a> or by <a href="mailto:info@albertoconnor.ca" class="text-brand-red hover:text-brand-gray transition-colors">Email</a></p>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const words = ["Architecture", "Best Practices", "Hiring", "Code Quality", "Code Organization", "AI Assisted Dev"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let currentWord = "";
+    let isDeleting = false;
+    const typeSpeed = 80;
+    const deleteSpeed = 40;
+    const pauseEnd = 2000;
+    const typewriterText = document.getElementById("typewriter-text");
+
+    function type() {
+      currentWord = words[wordIndex];
+      
+      if (isDeleting) {
+        typewriterText.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      } else {
+        typewriterText.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(type, pauseEnd);
+          return;
+        }
+      }
+      
+      setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+    }
+    
+    // Start typing effect
+    setTimeout(type, 500);
+  });
+</script>
 
 <section class="logos bg-gray-100 py-16 my-16 font-sans text-sm">
   <div class="container mx-auto px-4">

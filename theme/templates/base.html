@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="{{ DEFAULT_LANG }}" class="h-full">
 <head>
   {% block head %}
   <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
@@ -56,12 +56,12 @@
   </header><!-- /#banner -->
   {% block precontent %}
   {% endblock precontent %}
-  <div class="container mx-auto px-4 pb-16 flex-grow">
+  <main class="container mx-auto px-4 pb-16 flex-1 w-full">
     <div class="max-w-3xl mx-auto">
       {% block content %}
       {% endblock %}
     </div>
-  </div>
+  </main>
   <footer id="contentinfo" class="w-full bg-brand-gray text-[#8b8b8b] py-12 mt-auto">
     <div class="container mx-auto text-center font-sans text-sm">
       <i class="fa fa-creative-commons" title="Creative Commons"></i> Albert O'Connor<br>
