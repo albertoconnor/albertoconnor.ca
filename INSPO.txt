@@ -1,0 +1,26 @@
+# Design Inspiration: "Linear" Aesthetic for Fractional Staff Engineer Business Card
+
+The "Linear aesthetic" (pioneered by the project management app Linear) is characterized by extreme precision: fine 1px borders, subtle radial background glows, stark high-contrast typography, dark or ultra-crisp light modes, and "bento box" style grids.
+
+Here are top reference sites and what we can adapt from them:
+
+## 1. The "Bento Box" Grid
+**References:** [leerob.io](https://leerob.io), [bento.me](https://bento.me)
+*   **The Vibe:** Tightly packed grid of cards with very thin, subtle borders instead of a simple list of services.
+*   **Adaptation Idea:** A sleek 3x2 grid below the hero section. Cards can feature location, tech stack logos (Python, Django, AWS), and Fractional Offerings (Architecture, Hiring).
+
+## 2. Micro-Interactions & Glows
+**References:** [rauno.me](https://rauno.me), [linear.app](https://linear.app)
+*   **The Vibe:** Cards use light to draw the eye. Soft, subtle radial glows follow the mouse hover, or borders illuminate slightly.
+*   **Adaptation Idea:** Add hover states to the "Get in touch" button or service cards where a faint version of the brand red (#7e1d16) glows behind it for a premium, software-like feel.
+
+## 3. The Command Menu / Keyboard-First
+**References:** [paco.me](https://paco.me)
+*   **The Vibe:** Sites that feel like IDEs. Accessible via keyboard with a `Cmd + K` command menu.
+*   **Adaptation Idea:** A clean `Cmd + K` prompt that opens a sleek, blurred modal allowing clients to instantly jump to articles, copy email, or view resume.
+
+---
+
+### Potential Next Steps for the Project:
+1.  **Capabilities Bento Grid:** Replace the dated "Trusted By" logos with a fine-bordered grid highlighting 15+ years of Django/Python experience, fractional offerings, and past high-impact roles (Bungalow, Aurora, Korbit, Arteria).
+2.  **Dark Mode Flip:** The "Linear" style excels in Dark Mode. Flip the Tailwind config to deep charcoal (#111111) with off-white text and deep red as the striking accent color.
