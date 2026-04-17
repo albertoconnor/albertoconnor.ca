@@ -1,66 +1,157 @@
 {% extends "base.html" %}
 {% block content_title %}{% endblock %}
+
 {% block precontent %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-8 offset-md-2" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png">
-      <h1>Albert O'Connor<br>Web Developer</h1>
-      <p class="lead"><a href="#">Django</a> from 1.0 to <a href="#">Channels</a><br><a href="#">AWS</a> from t1.micro to t2.nano<br>Businesses, startups, and non-profits</p>
-      <p><em>Hire me by Twitter or by Email</em></p>
+<!-- Hero Section -->
+<section class="w-full relative py-20 lg:py-32 overflow-hidden border-b border-gray-100 bg-white">
+  <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+  <div class="container mx-auto px-6 max-w-6xl relative z-10 flex flex-col md:flex-row items-center gap-12">
+    
+    <div class="flex-1 text-left w-full">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight text-gray-900 mb-4 leading-tight">
+        Albert O'Connor
+      </h1>
+      <h2 class="text-xl md:text-2xl font-sans font-semibold text-brand-red mb-8 tracking-wide uppercase">
+        Fractional Staff Software Engineer
+      </h2>
+      
+      <div class="text-xl md:text-3xl text-gray-500 max-w-2xl font-bold leading-relaxed mb-10">
+        <p class="mb-3">Unblocking</p>
+        <div class="flex items-center text-gray-900 bg-white shadow-md border border-gray-200 rounded-xl px-5 py-4 min-h-[4rem] md:min-h-[4.5rem] w-full max-w-[28rem]">
+          <span class="font-mono font-bold text-xl md:text-2xl flex items-center">
+            <span class="text-gray-400 mr-3 select-none">$</span>
+            <span class="text-brand-red">
+              <span id="typewriter-text"></span><span class="animate-pulse">_</span>
+            </span>
+          </span>
+        </div>
+        <p class="mt-3">precisely when you need it.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="mailto:info@albertoconnor.ca" class="font-sans bg-gray-900 text-white px-8 py-4 rounded-xl font-bold tracking-wide hover:-translate-y-1 hover:shadow-lg hover:shadow-gray-200 transition-all duration-300">
+          Get in touch
+        </a>
+        <a href="https://github.com/albertoconnor" target="_blank" class="font-sans bg-white text-gray-700 border-2 border-gray-200 px-8 py-4 rounded-xl font-bold tracking-wide hover:-translate-y-1 hover:border-gray-900 hover:text-gray-900 hover:shadow-lg hover:shadow-gray-100 transition-all duration-300 flex items-center gap-3">
+          <i class="fa fa-github text-xl"></i> GitHub
+        </a>
+      </div>
     </div>
+    
+    <div class="hidden md:flex w-full md:w-1/3 justify-end items-center">
+      <img class="w-48 lg:w-64 opacity-90 drop-shadow-xl" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png" alt="Albert O'Connor Logo">
+    </div>
+    
   </div>
-</div>
-<section class="logos">
-  <div class="container">
-  <div class="row">
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
-      <p>Developer and CIO adviser</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png">
-      <p>Built and maintained CMS</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/watpy.png" alt="WatPy: Waterloo Region Python Group">
-      <p>Founder and Organizer</p>
-    </div>
-    <div class="col-md-3" style="text-align: center">
-      <img class="img-responsive logo" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/avocado.png" alt="Avocado Co-op">
-      <p>Founder and Developer</p>
-    </div>
-  </div>
-</div>
 </section>
+
+<!-- Logos Section -->
+<section class="w-full py-16 bg-white border-b border-gray-100">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8 text-center">Trusted By &amp; Associated With</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 items-center text-center">
+      <div class="flex flex-col items-center group">
+        <img class="h-10 md:h-12 mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png" alt="IQC Logo">
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Developer &amp; CIO Adviser</p>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img class="h-10 md:h-12 mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/IQC_logo_grey.png" alt="CMS Maintainer">
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">CMS Maintainer</p>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img class="h-10 md:h-12 mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/watpy.png" alt="WatPy: Waterloo Region Python Group">
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Founder &amp; Organizer</p>
+      </div>
+      <div class="flex flex-col items-center group">
+        <img class="h-10 md:h-12 mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/avocado.png" alt="Avocado Co-op">
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Founder &amp; Developer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const words = ["Architecture", "Engineering Velocity", "Strategic Hiring", "Code Quality", "Code Organization", "Continuous Delivery", "AI-Assisted Coding"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let currentWord = "";
+    let isDeleting = false;
+    const typeSpeed = 70;
+    const deleteSpeed = 30;
+    const pauseEnd = 2500;
+    const typewriterText = document.getElementById("typewriter-text");
+
+    if (!typewriterText) return;
+
+    function type() {
+      currentWord = words[wordIndex];
+      
+      if (isDeleting) {
+        typewriterText.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % words.length;
+        }
+      } else {
+        typewriterText.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        
+        if (charIndex === currentWord.length) {
+          isDeleting = true;
+          setTimeout(type, pauseEnd);
+          return;
+        }
+      }
+      
+      setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+    }
+    
+    setTimeout(type, 500);
+  });
+</script>
 {% endblock precontent %}
 
 {% block content %}
-<hr>
-{% if articles %}
-    {% for article in articles_page.object_list %}
-    <div class="index">
-      <h4 class="title"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
-      <time>
-        {{ article.date|strftime('%B, %d %Y') }}
-      </time>
-      </div>
-    {% if loop.last %}
-            {% if loop.length > 1 or articles_page.has_other_pages() %}
-                </ol><!-- /#posts-list -->
-                {% if articles_page.has_other_pages() %}
-                    {% include 'pagination.html' %}
-                {% endif %}
-                </section><!-- /#content -->
+<div class="pt-8 w-full">
+  <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 mb-10">Writing</h2>
+  {% if articles %}
+      <div class="space-y-6">
+      {% for article in articles_page.object_list %}
+        <article class="group relative flex flex-col md:flex-row md:items-baseline justify-between gap-2 md:gap-8 py-4 border-b border-gray-100 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors">
+          <h3 class="text-lg font-semibold text-gray-900 group-hover:text-brand-red transition-colors w-full md:w-2/3">
+            <a href="{{ SITEURL }}/{{ article.url }}" class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {{ article.title }}
+            </a>
+          </h3>
+          <time class="text-gray-500 font-mono text-sm whitespace-nowrap" datetime="{{ article.date|strftime('%Y-%m-%d') }}">
+            {{ article.date|strftime('%B %d, %Y') }}
+          </time>
+        </article>
+        
+        {% if loop.last %}
+          {% if loop.length > 1 or articles_page.has_other_pages() %}
+            {% if articles_page.has_other_pages() %}
+              <div class="pt-8">
+                {% include 'pagination.html' %}
+              </div>
             {% endif %}
+          {% endif %}
         {% endif %}
-    {% endfor %}
-{% else %}
-<section id="content" class="body">
-<h2>Pages</h2>
-    {% for page in PAGES %}
-        <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
-    {% endfor %}
-</section>
-{% endif %}
+      {% endfor %}
+      </div>
+  {% else %}
+  <section id="content" class="body">
+    <h2>Pages</h2>
+    <ul class="list-disc pl-6 text-gray-600">
+      {% for page in PAGES %}
+          <li><a href="{{ SITEURL }}/{{ page.url }}" class="text-brand-red hover:underline">{{ page.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+</div>
 {% endblock content %}

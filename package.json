@@ -1,0 +1,28 @@
+{
+  "name": "albertoconnor.ca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./theme/static/css/main.css -o ./theme/static/css/style.css",
+    "watch:css": "npx tailwindcss -i ./theme/static/css/main.css -o ./theme/static/css/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertoconnor/albertoconnor.ca.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/albertoconnor/albertoconnor.ca/issues"
+  },
+  "homepage": "https://github.com/albertoconnor/albertoconnor.ca#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "tailwindcss": "^4.2.1"
+  }
+}

@@ -1,0 +1,14 @@
+Title: Pjax vs JSON
+Date: 2013-01-23 17:11
+Slug: pjax-vs-json
+Category: Writing
+
+<p>At DjangoCon US 2012 I asked a question about performance after the BDFL keynote on Pjax. Asking about performance is never a good idea since it is never the most important thing. I was attempting to evaluate Pjax versus the plethora of Javascript based rendering that was being discussed.</p>
+<p>A common idea was to use the same template language in Django as you use in Javascript. The Meteor keynote explained that just sharing a template language doesn't solve the hard problems of passing the data and the logic about pre-rendering the data to the client. The Django template language is very simple, but it still lets you indirectly run arbitrarily complex code. All of that logic either has to be reimplemented on the client or the results magically exposed there.</p>
+<p>Pjax keeps rendering of templates on the server side and uses push state and ajax to optimize the user experience by avoiding page refreshes. Blocks of HTML are send from the server and installed on the existing page.</p>
+<p>I was looking for a comparison of the performance of Pjax vs Javascript rendering, which in the end isn't a simple question to answer. Even so I think it is worth having a mental model of the performance trade offs. Here is my attempt.</p>
+<p>Passing everything off to the client could be viewed as parallel computing. Have 1,000 simultaneous users? Send them small bits of JSON and have each of their CPUs do the template rendering for you. You also have to send the template, but on the whole you send fewer bytes and consume less of your server cpu. Massively parallelized! Awesome right?</p>
+<p>It is parallelized, but you have to rely on the client's browser to create a good user experience. Browsers largely are great and are getting better, but what if the user is on a low powered netbook and you are taking Javascript template rending to the extreme. What about the old school way of making things performant through caching?</p>
+<p>I remember reading a blog post once about how you can't make programs faster, no matter what you do the CPU does the same number of instructions per second. The only possible gains come from figuring out how to do fewer things. The best way on the web to do less is cache!</p>
+<p>Caching correctly is hard, most users are looking at pages with different combinations of content, but 37 Signals focused on doing it right and have proved with Basecamp that Pjax and caching can be very fast and responsive.</p>
+<p>Not being able to cache rendering and losing some control over the clients experience is a disadvantage to Javascript heavy web frameworks. One could argue I just really like Python, but I think there are other interesting reasons to pursue a Pjax path.</p>

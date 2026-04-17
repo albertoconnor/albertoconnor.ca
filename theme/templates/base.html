@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="{{ DEFAULT_LANG }}" class="h-full bg-brand-bg antialiased selection:bg-brand-red selection:text-white">
 <head>
   {% block head %}
   <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
@@ -12,68 +12,49 @@
   {% if FEED_ALL_RSS %}
   <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
   {% endif %}
-  {% if FEED_ATOM %}
-  <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
-  {% endif %}
-  {% if FEED_RSS %}
-  <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
-  {% endif %}
-  {% if CATEGORY_FEED_ATOM and category %}
-  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
-  {% endif %}
-  {% if CATEGORY_FEED_RSS and category %}
-  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
-  {% endif %}
-  {% if TAG_FEED_ATOM and tag %}
-  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
-  {% endif %}
-  {% if TAG_FEED_RSS and tag %}
-  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
-  {% endif %}
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300|Roboto:500" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300|Scope+One" rel="stylesheet">
   <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/pygment.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/font-awesome.min.css">
-  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/albertoconnor.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
   {% endblock head %}
 </head>
 
-<body id="index" class="home">
-  <header id="banner" class="body container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2" style="text-align: center">
-        <nav>
-          <a href="{{ SITEURL }}/" class="pill">Albert O'Connor WD</a>
-          <a href="{{ SITEURL }}/" class="pill hidden-xs-down"><i class="fa fa-feed"></i></a>
-          <a href="{{ SITEURL }}/" class="pill hidden-xs-down"><i class="fa fa-bookmark"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-linkedin"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-twitter"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-github"></i></a>
-          <a href="{{ SITEURL }}/" class="pill"><i class="fa fa-bitbucket"></i></a>
-
-        </nav>
-      </div>
+<body id="index" class="min-h-screen flex flex-col text-gray-900 font-sans leading-relaxed" hx-boost="true">
+  <header id="banner" class="w-full border-b border-gray-100 bg-white/90 backdrop-blur-sm sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-3 max-w-6xl flex justify-between items-center">
+      <a href="{{ SITEURL }}/" class="font-sans text-lg font-bold tracking-tight text-gray-900 hover:text-brand-red transition-colors flex items-center gap-3">
+        <img class="h-6 w-6 object-contain" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/albertoconnor_logo_only_transparent.png" alt="Logo">
+        Albert O'Connor
+      </a>
+      <nav class="flex items-center gap-6 text-sm font-medium text-gray-600">
+        <a href="{{ SITEURL }}/" class="hover-underline-animation hidden sm:block">Articles</a>
+        <a href="https://github.com/albertoconnor" target="_blank" class="hover:text-brand-red transition-colors" aria-label="GitHub"><i class="fa fa-github text-lg"></i></a>
+        <a href="mailto:info@albertoconnor.ca" class="hover:text-brand-red transition-colors" aria-label="Email"><i class="fa fa-envelope text-lg"></i></a>
+        {% if FEED_ALL_ATOM %}
+        <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" class="hover:text-brand-red transition-colors hidden sm:block" aria-label="RSS Feed"><i class="fa fa-rss text-lg"></i></a>
+        {% endif %}
+      </nav>
     </div>
   </header><!-- /#banner -->
+  
   {% block precontent %}
   {% endblock precontent %}
-  <div class="container content">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        {% block content %}
-        {% endblock %}
+  
+  <main class="container mx-auto px-6 pt-12 pb-24 flex-1 w-full max-w-6xl">
+    {% block content %}
+    {% endblock %}
+  </main>
+  
+  <footer id="contentinfo" class="w-full border-t border-gray-200 bg-white py-12 mt-auto">
+    <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+      <div class="mb-4 md:mb-0 flex items-center gap-2">
+        <i class="fa fa-creative-commons" title="Creative Commons"></i> Albert O'Connor
       </div>
-    </div>
-  </div>
-  <footer id="contentinfo" class="page_footer">
-    <div class="container" style="text-align: center">
-      <i class="fa fa-creative-commons" title="Creative Commons"></i> Albert O'Connor<br>
-      <a href="http://getpelican.com/">Pelican</a> powered<br>
-      <a href="#">Bootstrap 4</a> and <a href="#">Font Awesome</a><br>
-      Logo by Jenn Tiegs
+      <div class="flex flex-wrap gap-4 items-center">
+        <span>Powered by <a href="http://getpelican.com/" class="font-medium text-gray-900 hover:text-brand-red transition-colors">Pelican</a></span>
+        <span>&bull;</span>
+        <span>Unblocked by <a href="https://github.com/astral-sh/uv" class="font-medium text-gray-900 hover:text-brand-red transition-colors">uv</a> <span class="text-xs opacity-50">(at 0.001s)</span></span>
+      </div>
     </div>
   </footer><!-- /#contentinfo -->
 </body>
