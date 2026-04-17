@@ -3,7 +3,7 @@ Date: 2012-05-30 16:35
 Slug: watpy-waterloo-region-python-group
 Category: Writing
 
-<p><img src="http://s3.amazonaws.com:80/albertoconnor/image_mananger%2FWatPy.png" alt="WatPy" width="180" height="75" style="float: right; margin: 5px" /></p>
+<p><img src="https://s3.amazonaws.com/albertoconnor/image_mananger%2FWatPy.png" alt="WatPy" width="180" height="75" style="float: right; margin: 5px" /></p>
 <p>Come hear what the newest tech group in Kitchener-Waterloo has to say at our first Peer 2 Peer event.</p>
 <p>Thursday June 7th, 6:30pm at the Communitech Hub.</p>
 <p>Featuring Brydon Gilliss and a handfull of lightning speakers.</p>

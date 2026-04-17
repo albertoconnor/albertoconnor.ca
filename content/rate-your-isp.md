@@ -5,7 +5,7 @@ Category: Writing
 
 <p><center>
 <a href="http://ratemyisp.wildernesslabs.ca">
-<img src="http://s3.amazonaws.com:80/albertoconnor/image_mananger%2Fratemyisp_banner.png" alt="ratemyisp" style="margin-bottom: 5px" />
+<img src="https://s3.amazonaws.com/albertoconnor/image_mananger%2Fratemyisp_banner.png" alt="ratemyisp" style="margin-bottom: 5px" />
 </a>
 </center></p>
 <p>In June a <a href="http://ratemyisp.wildernesslabs.ca/about/">bunch</a> of great people went with me to a cottage for the weekend to create something. It was our 3rd <a href="http://wildernesslabs.ca/">Wilderness Labs</a> adventure. The outcome is pretty awesome.</p>

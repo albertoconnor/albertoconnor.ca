@@ -28,5 +28,5 @@ twine</a>, I know I will.</p>
 <p>We are planning on taking the train again next year. The website hasn’t been updated, but if you <a href="http://pythononrails.ca/" target="_blank">sign up</a> with your email you will be among the first know when details come out this fall.</p>
 <p>If you are involved in a startup consider joining them on the <a href="https://trips.threefortynine.com/" target="_blank">Startup Train</a> to the Montreal Startup Festival.</p>
 <p><center>
-<iframe src="http://www.slideshare.net/slideshow/embed_code/35502942" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<iframe src="https://www.slideshare.net/slideshow/embed_code/35502942" width="476" height="400" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
 </center></p>
