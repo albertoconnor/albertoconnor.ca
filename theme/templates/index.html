@@ -74,12 +74,15 @@
 </section>
 
 <script>
-  (function initTypewriter() {
+  function startTypewriter() {
     const typewriterText = document.getElementById("typewriter-text");
     if (!typewriterText) return;
     
-    // Prevent multiple concurrent loops if HTMX re-evaluates the script
-    if (typewriterText.dataset.initialized) return;
+    // Clear any existing timeout from previous runs
+    if (window.typewriterTimeout) {
+      clearTimeout(window.typewriterTimeout);
+    }
+    
     typewriterText.dataset.initialized = "true";
 
     const words = ["Architecture", "Engineering Velocity", "Strategic Hiring", "Code Quality", "Code Organization", "Continuous Delivery", "AI-Assisted Coding"];
@@ -92,7 +95,6 @@
     const pauseEnd = 2500;
 
     function type() {
-      // Safety check: stop the loop if the element is no longer in the DOM (e.g. navigated away)
       if (!document.getElementById("typewriter-text")) return;
 
       currentWord = words[wordIndex];
@@ -111,16 +113,28 @@
         
         if (charIndex === currentWord.length) {
           isDeleting = true;
-          setTimeout(type, pauseEnd);
+          window.typewriterTimeout = setTimeout(type, pauseEnd);
           return;
         }
       }
       
-      setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
+      window.typewriterTimeout = setTimeout(type, isDeleting ? deleteSpeed : typeSpeed);
     }
     
-    setTimeout(type, 500);
-  })();
+    // Reset text content immediately on init
+    typewriterText.textContent = "";
+    window.typewriterTimeout = setTimeout(type, 500);
+  }
+
+  // Run on initial load
+  startTypewriter();
+
+  // Run every time HTMX swaps this content back in
+  document.body.addEventListener('htmx:afterSwap', function(evt) {
+    if (document.getElementById("typewriter-text")) {
+      startTypewriter();
+    }
+  });
 </script>
 {% endblock precontent %}
 
