@@ -71,7 +71,14 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  (function initTypewriter() {
+    const typewriterText = document.getElementById("typewriter-text");
+    if (!typewriterText) return;
+    
+    // Prevent multiple concurrent loops if HTMX re-evaluates the script
+    if (typewriterText.dataset.initialized) return;
+    typewriterText.dataset.initialized = "true";
+
     const words = ["Architecture", "Engineering Velocity", "Strategic Hiring", "Code Quality", "Code Organization", "Continuous Delivery", "AI-Assisted Coding"];
     let wordIndex = 0;
     let charIndex = 0;
@@ -80,11 +87,11 @@
     const typeSpeed = 70;
     const deleteSpeed = 30;
     const pauseEnd = 2500;
-    const typewriterText = document.getElementById("typewriter-text");
-
-    if (!typewriterText) return;
 
     function type() {
+      // Safety check: stop the loop if the element is no longer in the DOM (e.g. navigated away)
+      if (!document.getElementById("typewriter-text")) return;
+
       currentWord = words[wordIndex];
       
       if (isDeleting) {
@@ -110,7 +117,7 @@
     }
     
     setTimeout(type, 500);
-  });
+  })();
 </script>
 {% endblock precontent %}
 
