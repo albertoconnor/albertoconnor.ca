@@ -7,7 +7,10 @@ SITENAME = "Albert O'Connor Web Developer"
 SITEURL = ''
 
 PATH = 'content'
-STATIC_PATHS = ['images']
+STATIC_PATHS = ['images', 'files', 'extra/robots.txt']
+EXTRA_PATH_METADATA = {
+    'extra/robots.txt': {'path': 'robots.txt'},
+}
 
 TIMEZONE = 'America/Toronto'
 
