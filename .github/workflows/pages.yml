@@ -3,7 +3,8 @@ name: Deploy Pelican to GitHub Pages
 on:
   push:
     branches:
-      - 2026 # We can change this to main later!
+      - master
+      - main
   workflow_dispatch:
 
 permissions:
