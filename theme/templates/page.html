@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title|striptags }}{% endblock %}
+
+{% block content %}
+<section id="content" class="w-full">
+  <article>
+    {% if not page.hide_title %}
+    <header class="mb-14 text-center max-w-3xl mx-auto pt-12">
+      <h1 class="text-4xl md:text-5xl font-sans font-extrabold tracking-tight text-gray-900 leading-tight mb-8">
+        {{ page.title }}
+      </h1>
+      <div class="w-12 h-1 bg-brand-red rounded-full mx-auto"></div>
+    </header>
+    {% endif %}
+
+    <div class="entry-content">
+      {{ page.content }}
+    </div>
+  </article>
+</section>
+{% endblock %}
