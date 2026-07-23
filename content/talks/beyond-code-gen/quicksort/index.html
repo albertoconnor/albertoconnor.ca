@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort for Product Managers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0B0E14;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --accent-primary: #6366F1;
+            --accent-secondary: #EC4899;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --pivot-color: #F59E0B;
+            --left-color: #10B981;
+            --right-color: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-main) 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        p.subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .concept-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .concept-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .concept-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .visualizer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        button.primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border: none;
+        }
+
+        button.primary:hover {
+            opacity: 0.9;
+            box-shadow: 0 10px 20px -5px rgba(236, 72, 153, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .array-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 250px;
+            width: 100%;
+            gap: 8px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 1rem;
+            border: 1px solid var(--card-border);
+            position: relative;
+        }
+
+        .array-bar {
+            width: 45px;
+            background: linear-gradient(to top, #374151, #6B7280);
+            border-radius: 6px 6px 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 0.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        background 0.3s ease, 
+                        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .array-bar.pivot {
+            background: linear-gradient(to top, #B45309, var(--pivot-color));
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+            transform: translateY(-10px);
+            z-index: 10;
+        }
+
+        .array-bar.left-pile {
+            background: linear-gradient(to top, #047857, var(--left-color));
+        }
+
+        .array-bar.right-pile {
+            background: linear-gradient(to top, #B91C1C, var(--right-color));
+        }
+        
+        .array-bar.sorted {
+            background: linear-gradient(to top, #4338CA, var(--accent-primary));
+        }
+
+        .array-bar .tooltip {
+            position: absolute;
+            bottom: -30px;
+            font-size: 0.75rem;
+            background: var(--bg-color);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--card-border);
+            opacity: 0;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .array-bar.pivot .tooltip {
+            opacity: 1;
+            color: var(--pivot-color);
+        }
+
+        .status-panel {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid var(--card-border);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .status-text {
+            color: #E5E7EB;
+        }
+
+        .legend {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .array-bar { width: 30px; font-size: 0.9rem; }
+            h1 { font-size: 2.5rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Quicksort for PMs</h1>
+        <p class="subtitle">The algorithm that makes backlog grooming scale. Understand how developers sort massive lists using the "Divide and Conquer" strategy.</p>
+    </header>
+
+    <div class="concept-card">
+        <h2>The PM Analogy: Sorting Feature Requests</h2>
+        <p>Imagine you have 100 disorganized feature requests. Sorting them one by one is exhausting.</p>
+        <p>Instead, you pick <span class="highlight">one random feature (the "Pivot")</span> to act as your benchmark. You ask your team a simple question for every other feature: <em>"Is this more urgent or less urgent than our benchmark?"</em></p>
+        <p>You now have two smaller piles: Urgent and Not Urgent. You simply repeat this exact process on those smaller piles until everything is perfectly prioritized. That is Quicksort!</p>
+        
+        <div class="visualizer">
+            <div class="controls">
+                <button id="btn-generate">Shuffle Backlog</button>
+                <button id="btn-sort" class="primary">Sort Step-by-Step</button>
+                <button id="btn-pause" disabled>Pause</button>
+                <input type="range" id="speed-slider" min="100" max="1500" value="600" style="accent-color: var(--accent-primary);">
+                <label for="speed-slider" style="color:var(--text-muted); align-self:center; font-size:0.9rem;">Speed</label>
+            </div>
+
+            <div class="status-panel">
+                <div class="status-text" id="status-message">Click "Sort Step-by-Step" to watch the algorithm in action!</div>
+            </div>
+
+            <div class="array-container" id="array-container">
+                <!-- Bars will be generated here -->
+            </div>
+
+            <div class="legend">
+                <div class="legend-item"><div class="legend-color" style="background: var(--text-muted);"></div> Unsorted</div>
+                <div class="legend-item"><div class="legend-color" style="background: var(--pivot-color);"></div> Pivot (Benchmark)</div>
+                <div class="legend-item"><div class="legend-color" style="background: var(--left-color);"></div> Less Than Pivot</div>
+                <div class="legend-item"><div class="legend-color" style="background: var(--right-color);"></div> Greater Than Pivot</div>
+                <div class="legend-item"><div class="legend-color" style="background: var(--accent-primary);"></div> Final Position</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="concept-card" style="animation-delay: 0.2s; opacity: 0;">
+        <h2>Why is this so fast?</h2>
+        <p>If you have 100 features and you compare every single feature to every other feature to figure out their exact order, you'd have to make <strong>10,000 comparisons</strong> (100 × 100).</p>
+        <p>But with Quicksort's "Divide and Conquer" approach, every time you pick a benchmark, you cut the remaining pile of work roughly in half! You only ever sort the smaller piles. This means you only have to split the piles about 7 times (since 2<sup>7</sup> ≈ 100). That's only <strong>~700 comparisons</strong> instead of 10,000.</p>
+        <p>In computer science, this difference is known as <span class="highlight">O(N log N) vs O(N²)</span>. At massive scale (like millions of items), this is the difference between a task finishing in seconds versus taking thousands of years!</p>
+    </div>
+</div>
+
+<script>
+    const arrayContainer = document.getElementById('array-container');
+    const statusMessage = document.getElementById('status-message');
+    const btnGenerate = document.getElementById('btn-generate');
+    const btnSort = document.getElementById('btn-sort');
+    const btnPause = document.getElementById('btn-pause');
+    const speedSlider = document.getElementById('speed-slider');
+
+    let array = [];
+    let bars = [];
+    let isSorting = false;
+    let shouldAbort = false;
+    let delay = 600;
+
+    // Initialize array with random "feature priorities"
+    async function generateArray(size = 12) {
+        if (isSorting) {
+            shouldAbort = true;
+            if (isPaused && resolvePause) {
+                resolvePause();
+                resolvePause = null;
+            }
+            await new Promise(r => setTimeout(r, 50));
+        }
+        isSorting = false;
+        isPaused = false;
+        shouldAbort = false;
+        btnPause.disabled = true;
+        btnPause.innerText = 'Pause';
+        btnPause.classList.remove('primary');
+        const pauseText = document.getElementById('pause-text');
+        if (pauseText) pauseText.remove();
+        btnSort.disabled = false;
+        btnGenerate.disabled = false;
+
+        array = [];
+        arrayContainer.innerHTML = '';
+        bars = [];
+
+        for (let i = 0; i < size; i++) {
+            // Values between 10 and 99
+            let value = Math.floor(Math.random() * 90) + 10;
+            array.push(value);
+
+            const bar = document.createElement('div');
+            bar.classList.add('array-bar');
+            bar.style.height = `${value * 2.2}px`;
+            bar.innerText = value;
+            
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+            tooltip.innerText = 'Pivot';
+            bar.appendChild(tooltip);
+
+            arrayContainer.appendChild(bar);
+            bars.push(bar);
+        }
+        statusMessage.innerHTML = "New backlog generated. Each block represents a feature's priority score.";
+    }
+
+    // Delay helper for animations
+    let isPaused = false;
+    let resolvePause = null;
+
+    const sleep = async (ms) => {
+        if (shouldAbort) throw new Error('Abort');
+        await new Promise(resolve => setTimeout(resolve, ms));
+        if (isPaused) {
+            await new Promise(resolve => {
+                resolvePause = resolve;
+            });
+        }
+        if (shouldAbort) throw new Error('Abort');
+    };
+
+    // Update delay when slider changes
+    speedSlider.addEventListener('input', (e) => {
+        // Reverse mapping so sliding right = faster
+        const max = parseInt(speedSlider.max);
+        const min = parseInt(speedSlider.min);
+        const val = parseInt(e.target.value);
+        delay = (max + min) - val; 
+    });
+
+    // Swaps two bars visually and in the array
+    async function swap(i, j) {
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+
+        // Visual swap
+        bars[i].style.transform = `translateX(${(j - i) * 53}px)`;
+        bars[j].style.transform = `translateX(${(i - j) * 53}px)`;
+        
+        await sleep(delay);
+
+        // Reset transforms and swap DOM elements
+        bars[i].style.transform = 'translateX(0)';
+        bars[j].style.transform = 'translateX(0)';
+        
+        // Swap heights and inner text instead of DOM node positions to avoid layout thrashing
+        bars[i].style.height = `${array[i] * 2.2}px`;
+        bars[j].style.height = `${array[j] * 2.2}px`;
+        
+        // Retain tooltips during text swap
+        const tooltipI = bars[i].querySelector('.tooltip');
+        const tooltipJ = bars[j].querySelector('.tooltip');
+        
+        bars[i].innerText = array[i];
+        bars[j].innerText = array[j];
+        
+        bars[i].appendChild(tooltipI);
+        bars[j].appendChild(tooltipJ);
+
+        // Swap classes to maintain colors
+        const tempClass = bars[i].className;
+        bars[i].className = bars[j].className;
+        bars[j].className = tempClass;
+    }
+
+    // Partition function
+    async function partition(low, high) {
+        // We pick the last element as the pivot
+        let pivotValue = array[high];
+        bars[high].classList.add('pivot');
+        statusMessage.innerHTML = `Picked <span style="color:var(--pivot-color)">${pivotValue}</span> as the Pivot (Benchmark). Comparing others to it.`;
+        await sleep(delay);
+
+        let i = low - 1;
+
+        for (let j = low; j < high; j++) {
+            bars[j].style.opacity = '0.7';
+            await sleep(delay / 2);
+
+            if (array[j] < pivotValue) {
+                i++;
+                bars[j].classList.add('left-pile');
+                statusMessage.innerHTML = `${array[j]} is <span style="color:var(--left-color)">less than</span> ${pivotValue}. Moving to the left pile.`;
+                if (i !== j) {
+                    await swap(i, j);
+                }
+            } else {
+                bars[j].classList.add('right-pile');
+                statusMessage.innerHTML = `${array[j]} is <span style="color:var(--right-color)">greater than</span> ${pivotValue}. Keeping in the right pile.`;
+            }
+            bars[j].style.opacity = '1';
+            await sleep(delay);
+        }
+
+        statusMessage.innerHTML = `Moving Pivot <span style="color:var(--pivot-color)">${pivotValue}</span> to its final sorted position between the two piles.`;
+        await sleep(delay);
+        await swap(i + 1, high);
+        
+        // Clean up classes for this partition step
+        for (let k = low; k <= high; k++) {
+            bars[k].classList.remove('left-pile', 'right-pile', 'pivot');
+        }
+        
+        // The pivot is now in its correct sorted position
+        bars[i + 1].classList.add('sorted');
+        
+        return i + 1;
+    }
+
+    // Recursive Quicksort function
+    async function quickSort(low, high) {
+        if (low < high) {
+            let pi = await partition(low, high);
+            
+            statusMessage.innerHTML = `Now sorting the pile to the left of ${array[pi]}...`;
+            await sleep(delay);
+            await quickSort(low, pi - 1);
+            
+            statusMessage.innerHTML = `Now sorting the pile to the right of ${array[pi]}...`;
+            await sleep(delay);
+            await quickSort(pi + 1, high);
+        } else if (low === high) {
+            bars[low].classList.add('sorted');
+        }
+    }
+
+    // Main sort trigger
+    async function startSort() {
+        if (isSorting) return;
+        isSorting = true;
+        isPaused = false;
+        shouldAbort = false;
+        btnSort.disabled = true;
+        btnGenerate.disabled = true;
+        btnPause.disabled = false;
+        btnPause.innerText = 'Pause';
+        btnPause.classList.remove('primary');
+
+        // Remove any existing sorted classes
+        bars.forEach(bar => bar.classList.remove('sorted'));
+
+        try {
+            await quickSort(0, array.length - 1);
+
+            // Ensure all are marked sorted at the end
+            bars.forEach(bar => bar.classList.add('sorted'));
+            
+            statusMessage.innerHTML = "🎉 Backlog fully prioritized! Everything is in perfect order.";
+        } catch (e) {
+            if (e.message !== 'Abort') throw e;
+        }
+
+        isSorting = false;
+        btnSort.disabled = false;
+        btnGenerate.disabled = false;
+        btnPause.disabled = true;
+        
+        btnPause.innerText = 'Pause';
+        btnPause.classList.remove('primary');
+        const pauseText = document.getElementById('pause-text');
+        if (pauseText) pauseText.remove();
+    }
+
+    // Event Listeners
+    btnGenerate.addEventListener('click', () => generateArray());
+    btnSort.addEventListener('click', startSort);
+    btnPause.addEventListener('click', () => {
+        isPaused = !isPaused;
+        if (isPaused) {
+            btnPause.innerText = 'Resume';
+            btnPause.classList.add('primary');
+            btnGenerate.disabled = false; // Allow shuffle while paused
+            statusMessage.innerHTML += " <strong id='pause-text' style='color:var(--accent-primary)'>(PAUSED)</strong>";
+        } else {
+            btnPause.innerText = 'Pause';
+            btnPause.classList.remove('primary');
+            btnGenerate.disabled = true; // Disable shuffle again
+            const pauseText = document.getElementById('pause-text');
+            if (pauseText) pauseText.remove();
+            
+            if (resolvePause) {
+                resolvePause();
+                resolvePause = null;
+            }
+        }
+    });
+
+    // Initial setup
+    // Set slider value so default delay matches UI
+    speedSlider.value = 900; 
+    generateArray();
+
+</script>
+
+</body>
+</html>

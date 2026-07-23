@@ -1,0 +1,1 @@
+var e=`/talks/beyond-code-gen/qr_code.png`;export{e as t};
