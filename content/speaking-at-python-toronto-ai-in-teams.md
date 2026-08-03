@@ -1,6 +1,7 @@
 Title: Speaking at Python Toronto: AI in Teams and Code Organization
 Date: 2026-07-23
 Tags: Python, Speaking, AI, Software Engineering
+Category: Writing
 Slug: speaking-at-python-toronto-ai-in-teams
 
 Recently, I’ve had the privilege of giving two talks at Python Toronto, diving into how we build and scale software. 
