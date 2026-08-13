@@ -1,9 +1,8 @@
 Title: AI Hype and Contextual Complexity
-Date: 2026-08-07
+Date: 2026-08-12
 Tags: AI, Software Engineering, Complexity
 Category: Writing
 Slug: ai-hype-and-contextual-complexity
-Status: hidden
 
 Generative AI with code is a magical vibe, right?
 
@@ -63,7 +62,7 @@ Hmm are we handling vertical video properly?
 
 Wait, what is the fastest way to compress these videos on this specific computer?
 
-Not quite ✨ ✨ ✨
+The experience is not quite ✨ ✨ ✨
 
 On the other hand, I wouldn't bother writing the script myself. If I did, I certainly wouldn't use SQLite even if it
 made it run better. I mean I could write but it would take the whole weekend. This time it still took the whole weekend,
@@ -82,14 +81,15 @@ working.
 
 Let's take a moment to talk about complexity. Snowden's Cynefin Framework gives us a way to think about complicated vs
 complex systems. We can layer on Dr. Richard Cook's famous manifesto 'How Complex Systems Fail' to explain how they
-break. Since we are talking about Contextual Complexity both could be useful.
+break. Since we are talking about Contextual Complexity both could be useful.[^snowden][^cook]
+
 
 Systems can be very complicated but still largely deterministic. A car engine or an involved single process Rust program
 are examples. The two examples we have seen are in the category of complicated but not complex.
 
 A complex system is one whose components interact non-deterministically whether through human interaction, physical non-determinism (networks), or now AI interaction—which is also non-deterministic. Once your Rust program is on the network
 talking to multiple components or 3rd party services, things become complex. Complex systems are harder to manage, reason
-about, and even if robust, massive failures are always possible.[^snowden]
+about, and even if robust, massive failures are always possible.
 
 If you are curious about why software inevitably drifts toward being complex, Alex Gaynor's essay on the topic is a
 great primer.[^gaynor]
@@ -106,7 +106,7 @@ The Context is both complex and unknown.
 Likely we have some idea of what kind of experience we want to create for the users of the system. Buried in that are
 hundreds or thousands of decisions. Each complicated component of the system runs in a degraded state. As systems safety
 researcher Dr. Richard Cook points out, the more complex a system gets, the more these degraded states compound to lead
-to massive issues.[^cook] Discovering the unknown context and managing the system to function well is the real
+to massive issues. Discovering the unknown context and managing the system to function well is the real
 project of team-based software development.
 
 I have said for years, well before Generative AI, typing out the code was never the hardest nor most time consuming
@@ -155,6 +155,6 @@ kind of "Centaur" we are becoming.
     
 [^willison]: **Simon Willison's Tools:** Willison, S. [https://tools.simonwillison.net/](https://tools.simonwillison.net/)
 [^snowden]: **Cynefin Framework:** Snowden, D. J., & Boone, M. E. (2007). "A Leader's Framework for Decision Making". *Harvard Business Review*.
-[^gaynor]: **Why Software is Complex:** Gaynor, A. (2019). ["Why software systems become complex"](https://alexgaynor.net/2019/aug/11/why-software-is-complex/).
 [^cook]: **How Complex Systems Fail:** Cook, R. I. (1998). "How Complex Systems Fail". *Cognitive Technologies Laboratory, University of Chicago*.
+[^gaynor]: **Why Software is Complex:** Gaynor, A. (2019). ["Why software systems become complex"](https://alexgaynor.net/2019/aug/11/why-software-is-complex/).
 [^vibe]: **Vibe Engineering:** Willison, S. (2025). ["Vibe coding and vibe engineering"](https://simonwillison.net/2025/Feb/23/vibe-coding-and-vibe-engineering/).
