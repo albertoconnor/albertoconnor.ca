@@ -5,8 +5,7 @@ Category: Writing
 Slug: lesson-1-apps-over-layers
 Status: draft
 
-This series focuses on code organization and how it can set you and your AI up
-for success.
+This series focuses on code organization and how it can set you up for success.
 
 A few years ago, I read a blog post focused on startup coding advice from the
 Python and Flask community. I agreed with a majority of the advice, but one
@@ -14,16 +13,13 @@ section suggested that either a Django-style "many apps" layout, or a Flask-styl
 approach—organizing by technical layers and grouping everything into one giant 
 "app"—were both reasonable options.
 
-I didn't agree then and with AI it is even worse advice today.
+I didn't think that it was reasonable then. Today with AI it makes even less sense.
 
-If you are building a startup on a platform you actually intend to scale,
-choosing the "technical layer" approach is not fine. Attempting to group your
-functionality into distinct, domain-driven "apps" will serve you much better in
-the long term, even though it requires more mental effort upfront. Even if you
-get it wrong, it won't be too hard to fix.
 
-Here is why you should always prefer an App-based structure over a Layered
-Architecture.
+If you intend to scale, technical layering is a mistake. Grouping functionality
+into domain-driven apps serves you far better long-term. The upfront mental effort
+pays off, and while you will likely get the initial boundaries wrong, that is
+fine—folder boundaries are easy to adjust.
 
 ## The Django Model vs. The Rails Default
 
@@ -43,8 +39,7 @@ beginning. You optimize for change.
 
 But here is the secret: Database tables and models are rigid, but apps are
 simply Python folder constructs. If you draw the wrong boundaries initially, you
-can easily evolve them over time. Moving files between folders is infinitely
-easier than untangling a massive 4,000-line `models.py` file a year later.
+can easily evolve them over time.
 
 ## Consistency vs. Chaos
 
@@ -60,20 +55,24 @@ free-for-all.
 ## AI and Import Clarity
 
 A consistent set of files within a dedicated folder creates a predictable
-purpose. This is highly effective context for AI tools. If you drop an AI into a
-`/billing` folder, it understands the context immediately. It is easier to
+purpose. This is highly effective context for AI. If you drop an AI into a
+`/billing` folder, it can understand the context immediately. It is easier to
 describe the purpose of each file to encourage better code generation.
 
-More importantly, app structures make it explicitly obvious when you are
+For human developers, it simplifies reasoning and makes parallel work easier
+when features do not overlap. Teammates work in distinct app directories instead
+of colliding over arbitrarily named files in shared layer folders.
+
+Finally, app structures make it explicitly obvious when you are
 importing functionality across boundaries. If you are inside the `users` app and
 you have to type `from billing.models import Invoice`, you immediately feel the
 friction of crossing a boundary. It forces you to think about how code is
 shared, rather than just silently importing something that happens to live in
 the exact same `models/` folder.
 
-This kind of boundary crossing is okay; the goal here isn't to isolate everything.
-Your initial app choices will evolve. When you cross import though, you can
-easily analyze the results.
+Boundary crossing is fine; the goal is not total isolation. Your apps will evolve,
+and when you do cross-import, you can analyze coupling simply by inspecting
+import statements.
 
 ## Learn from Rails and Shopify
 
@@ -81,11 +80,11 @@ If you want proof of why technical layering fails at scale, just look at Ruby on
 Rails.
 
 Out of the box, Rails uses strict technical layering. If your startup grows to
-have 200 models spanning 10 different business domains all 200 models live
-flatly inside a single app/models/ folder.
+have 200 models spanning 10 different business domains, all 200 models live
+flatly inside a single `app/models/` folder.
 
 Shopify runs one of the largest, oldest Rails monoliths in the world.[^packwerk-blog] Because
-everything lived in app/models, their boundaries completely collapsed. The "Big
+everything lived in `app/models/`, their boundaries completely collapsed. The "Big
 App" became a "Big Ball of Mud."
 
 To fix this, Shopify had to invest massive engineering effort to build and
