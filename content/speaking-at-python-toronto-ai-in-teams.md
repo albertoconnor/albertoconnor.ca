@@ -22,9 +22,9 @@ If you missed it, you can view the fully interactive slide deck right here:
 
 Back in April, I also took the stage at Python Toronto to discuss Code Organization and how it related to AI, testing, and teams.
 
-The slide deck for this presentation is coming soon!
+The slide deck for this presentation is now available.
 
-👉 **[View the Slides: Coming Soon!]**
+👉 **[View the Slides: Code Organization](/talks/code-org/)**
 
 ---
 
