@@ -1,9 +1,8 @@
 Title: Lesson 1: Apps Over Layers
-Date: 2026-09-17
+Date: 2026-09-25
 Tags: Python, Django, Architecture, Software Engineering
 Category: Writing
 Slug: lesson-1-apps-over-layers
-Status: draft
 
 This series focuses on code organization and how it can set you up for success.
 
