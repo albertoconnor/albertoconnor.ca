@@ -27,7 +27,7 @@ the term.
 
 ✨ ✨ ✨
 
-[Poof!](https://albertoconnor.github.io/tools/tools/mortgage-calculator.html)
+<a href="https://albertoconnor.github.io/tools/tools/mortgage-calculator.html" target="_blank" rel="noopener noreferrer">Poof!</a>
 
 This is a tool built in minutes which I use and love.
 
