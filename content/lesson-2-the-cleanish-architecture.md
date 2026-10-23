@@ -14,23 +14,22 @@ organizing a monolith into feature-driven apps rather than flat technical
 layers keeps domains isolated, reduces blast radiuses, and sets up predictable
 boundaries for both humans and AI.
 
-This post describes one option of how to structure what goes inside each app,
-but ultimately it is up to you.
+This post describes one way to structure what goes inside each app.
 
 ## Fat Models and How Services Did Not Solve the Problem
 
 In the early days of Django, the pattern we fell into was fat models and custom
 model managers. We were all focused on Model-View-Controller, but Django lacked
-an explicit controller, so logic ended up stuffed into model methods or maybe
-the views. That feels reasonable early on, but cross-model logic and operations
-you want to abstract from a single model quickly become cumbersome.
+an explicit controller, so logic ended up stuffed into models or views.
+That felt reasonable early on, but cross-model logic and operations we wanted to
+abstract from a single model quickly became cumbersome.
 
 Attempting to fix this by introducing "service" or controller classes didn't
-solve the real problem. Taking logic out of models and views and putting it
-into services felt organized, but we still didn't have a clear framework for
-what kinds of work belonged where. What should the view stop doing? Where do
-database reads belong versus database writes? We moved the code, but we didn't
-change the underlying confusion.
+solve the real problem. Taking logic out of models and views and putting it into
+services felt organized, but we still didn't have a clear framework for what
+kinds of work belonged where. What should the view stop doing? Where did database
+reads belong versus database writes? We moved the code, but we didn't change the
+underlying confusion.
 
 ## Flipping the Script on I/O
 
@@ -38,34 +37,34 @@ The typical approach when organizing code is to push the messy details down. An
 API endpoint or view calls a function, which calls a helper function, which
 calls another helper that finally executes a database query or calls a
 third-party API. This feels like abstraction: we go from high level to low
-level. In reality, it means every function we write is doing I/O, which makes
-every single function hard to test because they all need to mock.
+level. In reality, it means every function we write performs I/O, which makes
+every single function hard to test because they all require mocks.
 
 In his talk, "The Clean Architecture in Python", Brandon Rhodes pointed out
 Uncle Bob's counter-intuitive insight: we need to flip the script and push I/O
 to the highest reasonable level.[^rhodes-clean]
 
-Instead of functions calling functions that perform I/O, in an orchestrator
-function gather your data upfront (I/O), pass that data into your logic, and
-persist the results at the end (I/O). This means your logic functions are
-passing around plain old data, making it easier to test. The orchestrator function
-test will require mocking but it should only need a few tests.
+Instead of having functions call other functions that perform I/O, use an
+orchestrator function: gather your data upfront (I/O), pass that data into your
+logic, and persist the results at the end (I/O). This means your logic functions
+pass around plain old data, making them easier to test. Testing the orchestrator
+function will require mocking, but it should only need a few tests.
 
-
-Gary Bernhardt called this top or outer layer the boundary in his talk
-*Boundaries*. He introduced the concept of a "Functional Core, Imperative
-Shell."[^bernhardt-boundaries] His talk formalized the idea and the rationale
-for why it is worth it. It is easy to test functions which do no I/O and
-just take and return plain old values. They are easier to write, run super
-fast, and do not get slower the way integration tests tend to.
+Brandon Rhodes and Uncle Bob were not alone. Around the same time, Gary
+Bernhardt arrived at the same conclusion in his influential talk
+*Boundaries*, formalizing the idea with a term that stuck: the "Functional
+Core, Imperative Shell."[^bernhardt-boundaries] Where Brandon described pushing
+I/O up, Gary emphasized keeping the core pure: functions that perform no I/O and
+simply accept and return plain values are trivial to test, run fast, and avoid
+the slowdowns common in heavy integration suites.
 
 ## The Power of Plain Data
 
 This sounds simple and straightforward, but Brandon's later talk, his keynote
 at North Bay Python 2017[^rhodes-slides], walks through building his
-terminal-based slide tool. Toward the conclusion of the talk, he realized he,
-the person who gave the talk on the Clean Architecture in Python, failed to
-realize that he should follow the pattern. He was stuck in our old ways.
+terminal-based slide tool. Toward the conclusion of the talk, he admitted that
+even he—the person who gave the talk on Clean Architecture in Python—had failed
+to follow the pattern. He was stuck in the old ways.
 
 His talk also reveals something even more powerful: preferring data over logic
 for flow control. Not only does his functional core pass back plain old data,
@@ -73,8 +72,9 @@ but the data is complex and represents terminal state. The state is cheap to
 edit, easy to assert in tests, and provides a robust debugging interface
 compared to a series of branching functions and a maze of unit tests.
 
-Using data as control flow also ensures the orchestrator function is as simple
-as possible and does not have branching code which requires more mocking tests.
+Using data for control flow also ensures the orchestrator function is as simple
+as possible, avoiding branching code that would require additional mock-heavy
+tests.
 
 
 ## Cleanish Architecture: Pragmatism Over Dogma
@@ -101,11 +101,11 @@ Follow those two rules, and you get fast, mock-free tests without the enterprise
 ## The One Rule: Easy To Change
 
 
-In his talk One Rule to Rule Them All, Pragmatic Programmer co-author Dave
-Thomas argued that every foundational design guideline—DRY, SOLID, decoupling,
-high cohesion—is just a special case of one single principle: ETC (Easy To
-Change).[^thomas-etc] If an architectural pattern makes adapting to new
-requirements harder, it is a bad pattern.
+In his talk *One Rule to Rule Them All*, *The Pragmatic Programmer* co-author
+Dave Thomas argued that every foundational design guideline—DRY, SOLID,
+decoupling, high cohesion—is just a special case of one single principle: ETC
+(Easy To Change).[^thomas-etc] If an architectural pattern makes adapting to
+new requirements harder, it is a bad pattern.
 
 This rule matters because, as I always say:
 
