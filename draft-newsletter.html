@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Draft Preview: Lesson 2 - The Cleanish Architecture</title>
+  <style>
+    body {
+      background-color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 24px 12px;
+      color: #111827;
+    }
+    .toolbar {
+      max-width: 600px;
+      margin: 0 auto 16px auto;
+      background: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .copy-btn {
+      background-color: #7e1d16;
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .copy-btn:hover {
+      background-color: #631610;
+    }
+    .status-msg {
+      color: #059669;
+      font-weight: 600;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <span><strong>Email-Optimized Draft:</strong></span>
+    <div>
+      <span id="copy-status" class="status-msg">Copied to clipboard! </span>
+      <button class="copy-btn" onclick="copyEmail()">Copy Email for Gmail</button>
+    </div>
+  </div>
+
+  <!-- START OF BULLETPROOF EMAIL TABLE -->
+  <div id="email-container">
+    <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="background-color: #f3f4f6; width: 100%; margin: 0; padding: 20px 0;">
+      <tr>
+        <td align="center" style="padding: 0 10px;">
+          
+          <!-- MAIN CONTAINER (600px STANDARD EMAIL WIDTH) -->
+          <table role="presentation" width="600" border="0" cellpadding="0" cellspacing="0" style="width: 100%; max-width: 600px; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; text-align: left;">
+            
+            <!-- BRAND TOP ACCENT BAR -->
+            <tr>
+              <td style="height: 4px; background-color: #7e1d16; font-size: 4px; line-height: 4px;">&nbsp;</td>
+            </tr>
+
+            <!-- HEADER -->
+            <tr>
+              <td style="padding: 24px 32px 18px 32px; border-bottom: 1px solid #f3f4f6;">
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td align="left" style="vertical-align: middle;">
+                      <a href="https://albertoconnor.ca" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 700; color: #111827; text-decoration: none; letter-spacing: -0.02em;">
+                        Albert O'Connor
+                      </a>
+                    </td>
+                    <td align="right" style="vertical-align: middle;">
+                      <span style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #7e1d16; background-color: #fdf2f2; padding: 4px 10px; border-radius: 12px; display: inline-block;">
+                        Draft Preview
+                      </span>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- INTRO / FEEDBACK REQUEST NOTE -->
+            <tr>
+              <td style="padding: 24px 32px; background-color: #f9fafb; border-bottom: 1px solid #e5e7eb;">
+                <p style="margin: 0 0 10px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; color: #111827;">
+                  Hi Code Organizers,
+                </p>
+                <p style="margin: 0 0 12px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.55; color: #374151;">
+                  I am working on the next article in my series on code organization and wanted to share this draft with you before publishing it publicly.
+                </p>
+                <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.5; color: #6b7280;">
+                  You can read it below, or view the web draft at: 
+                  <a href="https://albertoconnor.ca/drafts/lesson-2-the-cleanish-architecture.html" style="color: #7e1d16; text-decoration: underline;">albertoconnor.ca/drafts/lesson-2-the-cleanish-architecture.html</a>
+                </p>
+              </td>
+            </tr>
+
+            <!-- ARTICLE CONTENT -->
+            <tr>
+              <td style="padding: 32px 32px 40px 32px;">
+
+                <h1 style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 800; line-height: 1.25; color: #111827;">
+                  Lesson 2: The Cleanish Architecture
+                </h1>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  This series focuses on code organization and how it can set you and your AI up for success.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  The first post, <a href="https://albertoconnor.ca/lesson-1-apps-over-layers.html" style="color: #7e1d16; text-decoration: underline; font-weight: 600;">Lesson 1: Apps Over Layers</a>, covered why organizing a monolith into feature-driven apps rather than flat technical layers keeps domains isolated, reduces blast radiuses, and sets up predictable boundaries for both humans and AI.
+                </p>
+
+                <p style="margin: 0 0 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  This post describes one way to structure what goes inside each app.
+                </p>
+
+                <!-- SECTION 1 -->
+                <h2 style="margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; color: #7e1d16;">
+                  Fat Models and How Services Did Not Solve the Problem
+                </h2>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  In the early days of Django, the pattern we fell into was fat models and custom model managers. We were all focused on Model-View-Controller, but Django lacked an explicit controller, so logic ended up stuffed into models or views. That felt reasonable early on, but cross-model operations and abstractions quickly became cumbersome.
+                </p>
+
+                <p style="margin: 0 0 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Attempting to fix this by introducing "service" or controller classes didn't solve the real problem. Taking logic out of models and views and putting it into services felt organized, but we still didn't have a clear framework for what kinds of work belonged where. What should the view stop doing? Where did database reads belong? We moved the code, but we didn't change the underlying confusion.
+                </p>
+
+                <!-- SECTION 2 -->
+                <h2 style="margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; color: #7e1d16;">
+                  Flipping the Script on I/O
+                </h2>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  The typical approach when organizing code is to push the messy details down. An API endpoint calls a function, which calls a helper function, which calls another helper that finally executes a database query or calls a third-party API. This feels like abstraction: we go from high level to low level. In reality, it means every function we write performs I/O, which makes every single function hard to test because they all require mocks.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  In his talk, <em>The Clean Architecture in Python</em>, Brandon Rhodes pointed out Uncle Bob's counter-intuitive insight: we need to flip the script and push I/O to the highest reasonable level.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Instead of having functions call other functions that perform I/O, use an orchestrator function: gather your data upfront, pass that data into your logic, and persist the results at the end. This means your logic functions pass around plain old data, making them easier to test. Testing the orchestrator function will require mocking, but it should only need a few tests.
+                </p>
+
+                <p style="margin: 0 0 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Brandon Rhodes and Uncle Bob were not alone. Around the same time, Gary Bernhardt arrived at the same conclusion in his influential talk <em>Boundaries</em>, formalizing the idea with a descriptive name: "Functional Core, Imperative Shell." Where Brandon described pushing I/O up, Gary emphasized keeping the core pure: functions that perform no I/O and simply accept and return plain values are trivial to test, run fast, and avoid the slowdowns common in heavy integration suites.
+                </p>
+
+                <!-- SECTION 3 -->
+                <h2 style="margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; color: #7e1d16;">
+                  The Power of Plain Data
+                </h2>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  This sounds simple and straightforward, but Brandon's later talk, his keynote at North Bay Python 2017, walks through building his terminal-based slide tool. Toward the conclusion of the talk, he admitted that even he—the person who gave the talk on Clean Architecture in Python—had failed to follow the pattern. He was stuck in the old ways.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  His talk also reveals something even more powerful: preferring data over logic for flow control. Not only does his functional core pass back plain old data, but the data is complex and represents terminal state. The representation of state is cheap to edit, easy to assert in tests, and provides a robust debugging interface.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  All that is needed is a relatively straightforward function that writes the final terminal state to the screen. The I/O is in the boundary.
+                </p>
+
+                <p style="margin: 0 0 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Using data for control flow also ensures the orchestrator function is as simple as possible, avoiding branching code that would require additional mock-heavy tests.
+                </p>
+
+                <!-- SECTION 4 -->
+                <h2 style="margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; color: #7e1d16;">
+                  The Clean(ish) Architecture
+                </h2>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Uncle Bob’s full Clean Architecture attempts to abstract everything, even the framework itself. In ecosystems like Django or Rails, adopting that purist approach delivers diminishing returns. You end up writing domain entities, repositories, and data transfer objects for every single model, spending more time maintaining boilerplate than building features.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  The approach I advocate—what I call the Cleanish Architecture—takes the core insights from Brandon and Gary without throwing away the conveniences of our frameworks. You do not need to create pure data doubles for every database model. If you squint, a Django model instance looks close enough to plain old data.
+                </p>
+
+                <p style="margin: 0 0 10px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  There are at least two caveats to making this work:
+                </p>
+
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-bottom: 20px;">
+                  <tr>
+                    <td style="padding: 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #1f2937;">
+                      • <strong>Prefetch upfront:</strong> Ensure related data is loaded before it reaches your logic, so simple attribute access doesn't trigger a surprise database query.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; color: #1f2937;">
+                      • <strong>Treat models as read-only:</strong> Never call <code>.save()</code>, <code>.update()</code>, or mutating model methods inside your business logic. Saving state belongs strictly in your I/O functions.
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  Follow those two rules, and you get fast, mock-free tests without the enterprise ceremony.
+                </p>
+
+                <!-- NOTE CALLOUT -->
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin: 20px 0; background-color: #f9fafb; border-left: 3px solid #7e1d16; border-radius: 0 4px 4px 0;">
+                  <tr>
+                    <td style="padding: 12px 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.55; color: #4b5563;">
+                      <em>Note:</em> I have no problem letting unit tests hit the database in Django. The framework has always treated database-backed testing as a first-class citizen.
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- SECTION 5 -->
+                <h2 style="margin: 32px 0 12px 0; padding-bottom: 6px; border-bottom: 1px solid #f3f4f6; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 19px; font-weight: 700; color: #7e1d16;">
+                  The One Rule: Easy To Change
+                </h2>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  In his talk <em>One Rule to Rule Them All</em>, <em>The Pragmatic Programmer</em> co-author Dave Thomas argued that every foundational design guideline—DRY, SOLID, decoupling, high cohesion—is just a special case of one single principle: ETC (Easy To Change). If an architectural pattern makes adapting to new requirements harder, it is a bad pattern.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  This rule is fundamental because, as I always say:
+                </p>
+
+                <!-- PULL QUOTE -->
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin: 20px 0; background-color: #fdf2f2; border-left: 4px solid #7e1d16; border-radius: 0 4px 4px 0;">
+                  <tr>
+                    <td style="padding: 12px 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 17px; font-style: italic; color: #7e1d16; line-height: 1.5;">
+                      You know the least at the beginning.
+                    </td>
+                  </tr>
+                </table>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  In fact, you always know less today than you will tomorrow. You are constantly discovering what the problem actually is, which means every architecture starts as an educated guess based on incomplete information. What ruins codebases isn't making imperfect guesses early on; it's the fear of changing them later when tests are slow, mocks are brittle, and code changes cascade in unexpected ways.
+                </p>
+
+                <p style="margin: 0 0 16px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  The Cleanish Architecture is simply about removing that fear. When you push I/O out of your business logic and into a shell, unit tests run fast without mocks, and refactoring stops being scary. You optimize for change because change is the only way your code adapts to what you learn.
+                </p>
+
+                <p style="margin: 0 0 24px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.6; color: #1f2937;">
+                  In the next post, we will walk through a concrete Django example showing the exact file layout I use today (reads, writes, services, handlers)—and how this pattern directly helps AI agents write reliable, maintainable code.
+                </p>
+
+                <!-- CLOSING FEEDBACK PROMPT -->
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 36px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                  <tr>
+                    <td style="padding-top: 16px;">
+                      <p style="margin: 0 0 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 700; color: #111827;">
+                        Thoughts or feedback?
+                      </p>
+                      <p style="margin: 0 0 12px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; color: #4b5563;">
+                        Just hit reply, or <a href="https://github.com/albertoconnor/albertoconnor.ca/issues/5" style="color: #7e1d16; text-decoration: underline;">leave a comment on GitHub issue #5</a>—I'd love to know what worked for you and what felt murky.
+                      </p>
+                      <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700; color: #111827;">
+                        — Albert
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+
+                <!-- REFERENCES -->
+                <table role="presentation" width="100%" border="0" cellpadding="0" cellspacing="0" style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+                  <tr>
+                    <td>
+                      <p style="margin: 0 0 10px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #9ca3af;">
+                        References & Talks
+                      </p>
+                      <ol style="margin: 0; padding-left: 18px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.6; color: #6b7280;">
+                        <li style="margin-bottom: 6px;">
+                          <strong>The Clean Architecture in Python:</strong> Rhodes, B. (2014). PyOhio 2014. <a href="https://pyvideo.org/pyohio-2014/the-clean-architecture-in-python.html" style="color: #7e1d16; text-decoration: underline;">Link</a>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                          <strong>Boundaries:</strong> Bernhardt, G. (2012). SCNA. <a href="https://www.destroyallsoftware.com/talks/boundaries" style="color: #7e1d16; text-decoration: underline;">Link</a>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                          <strong>Keynote:</strong> Rhodes, B. (2017). North Bay Python 2017. <a href="https://www.youtube.com/watch?v=rrMnmLyYjU8" style="color: #7e1d16; text-decoration: underline;">Link</a>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                          <strong>The Clean Architecture:</strong> Martin, R. C. (2012). <em>Clean Coder Blog</em>. <a href="https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html" style="color: #7e1d16; text-decoration: underline;">Link</a>
+                        </li>
+                        <li style="margin-bottom: 6px;">
+                          <strong>One Rule to Rule Them All:</strong> Thomas, D. (2022). YOW! 2022. <a href="https://www.youtube.com/watch?v=yWbM4oE-G14" style="color: #7e1d16; text-decoration: underline;">Link</a>
+                        </li>
+                      </ol>
+                    </td>
+                  </tr>
+                </table>
+
+              </td>
+            </tr>
+
+            <!-- FOOTER -->
+            <tr>
+              <td style="padding: 18px 32px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; text-align: center;">
+                <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; color: #6b7280;">
+                  Albert O'Connor · <a href="https://albertoconnor.ca" style="color: #7e1d16; text-decoration: none; font-weight: 600;">albertoconnor.ca</a> · 
+                  <a href="https://albertoconnor.ca/lesson-1-apps-over-layers.html" style="color: #4b5563; text-decoration: underline;">Lesson 1: Apps Over Layers</a>
+                </p>
+              </td>
+            </tr>
+
+          </table>
+          <!-- END MAIN CONTAINER -->
+
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- END OF BULLETPROOF EMAIL TABLE -->
+
+  <script>
+    async function copyEmail() {
+      const container = document.getElementById('email-container');
+      const html = container.innerHTML;
+      const text = container.innerText;
+
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          const item = new ClipboardItem({
+            'text/html': new Blob([html], { type: 'text/html' }),
+            'text/plain': new Blob([text], { type: 'text/plain' })
+          });
+          await navigator.clipboard.write([item]);
+        } else {
+          const range = document.createRange();
+          range.selectNode(container);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+          document.execCommand('copy');
+          window.getSelection().removeAllRanges();
+        }
+        const status = document.getElementById('copy-status');
+        status.style.display = 'inline';
+        setTimeout(() => { status.style.display = 'none'; }, 3000);
+      } catch (err) {
+        alert('Could not copy automatically. Please select the email box and press Cmd+C.');
+      }
+    }
+  </script>
+
+</body>
+</html>

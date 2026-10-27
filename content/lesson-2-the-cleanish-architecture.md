@@ -130,6 +130,9 @@ In the next post, we will walk through a concrete Django example showing the
 exact file layout I use today (reads, writes, services, handlers)—and how this pattern
 directly helps AI agents write reliable, maintainable code.
 
+---
+> 💬 **Enjoyed this?** [Subscribe via RSS](/feeds/all.atom.xml), [leave a comment on this issue](https://github.com/albertoconnor/albertoconnor.ca/issues/5), or [join the Slack](/slack) to continue the conversation.
+
 ## References
 
 [^rhodes-clean]: **The Clean Architecture in Python:** Rhodes, B. (2014). PyOhio 2014. [https://pyvideo.org/pyohio-2014/the-clean-architecture-in-python.html](https://pyvideo.org/pyohio-2014/the-clean-architecture-in-python.html)
