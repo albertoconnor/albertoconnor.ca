@@ -1,9 +1,8 @@
 Title: Lesson 2: The Cleanish Architecture
-Date: 2026-10-15
+Date: 2026-10-29
 Tags: Python, Django, Architecture, Software Engineering
 Category: Writing
 Slug: lesson-2-the-cleanish-architecture
-Status: draft
 
 This series focuses on code organization and how it can set you and your AI up
 for success.
